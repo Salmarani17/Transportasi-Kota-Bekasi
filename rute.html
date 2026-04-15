@@ -445,23 +445,8 @@ Harapan Indah → Terminal Bekasi
 </tr>
 </thead>
 
-<tbody>
-<tr>
-<td>K01</td>
-<td><i class="fas fa-van-shuttle"></i> Terminal Bekasi → Pondok Gede</td>
-</tr>
+<tbody id="koasi-body"></tbody>
 
-<tr>
-<td>K02</td>
-<td><i class="fas fa-van-shuttle"></i> Bekasi Timur → Tambun</td>
-</tr>
-
-<tr>
-<td>K03</td>
-<td><i class="fas fa-van-shuttle"></i> Terminal Bekasi → Cikarang</td>
-</tr>
-
-</tbody>
 </table>
 
 </div>
@@ -578,21 +563,37 @@ Harapan Indah → Terminal Bekasi
 
 </footer>
 
+
 <script>
+const headers = document.querySelectorAll(".accordion-header");
 
-const headers=document.querySelectorAll(".accordion-header");
-
-headers.forEach(header=>{
-header.addEventListener("click",()=>{
-
-const content=header.nextElementSibling;
-
-content.style.display=
-content.style.display==="block"?"none":"block";
-
-});
+headers.forEach(header => {
+    header.addEventListener("click", () => {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    });
 });
 
+// =====================
+// AMBIL DATA DARI API
+// =====================
+fetch("http://127.0.0.1:8000/api/koasi")
+    .then(res => res.json())
+    .then(data => {
+        let html = "";
+
+        data.forEach(k => {
+            html += `
+                <tr>
+                    <td>${k.kode}</td>
+                    <td><i class="fas fa-van-shuttle"></i> ${k.rute}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById("koasi-body").innerHTML = html;
+    })
+    .catch(err => console.log(err));
 </script>
 
 </body>
