@@ -47,3 +47,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Frontend
 Route::get('/rute', [TransportasiController::class, 'rute']);
+Route::get('/transportasi/{id}/stasiun', [TransportasiController::class, 'formStasiun'])
+    ->name('transportasi.stasiun');
+Route::post('transportasi/{id}/stasiun', [TransportasiController::class, 'storeStasiun'])
+    ->name('transportasi.stasiun.store');
+
+Route::post('/transportasi/{id}/rute', [TransportasiController::class, 'storeRute']);

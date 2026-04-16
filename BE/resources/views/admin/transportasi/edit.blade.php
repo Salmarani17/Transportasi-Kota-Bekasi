@@ -6,16 +6,37 @@
         @csrf
         @method('PUT')
 
-        <input type="text" name="nama" value="{{ old('nama', $transportasi->nama) }}"
-            class="w-full border p-2 mb-3 rounded">
+        <!-- Nama -->
+        <input type="text" name="nama"
+            value="{{ old('nama', $transportasi->nama) }}"
+            class="w-full border p-2 mb-3 rounded"
+            placeholder="Nama Transportasi">
 
-        <textarea name="deskripsi"
-            class="w-full border p-2 mb-3 rounded">{{ old('deskripsi', $transportasi->deskripsi) }}</textarea>
+        <!-- Jenis -->
+        <select name="jenis" class="w-full border p-2 mb-3 rounded">
+            <option value="">Pilih Jenis</option>
+            <option value="krl" {{ $transportasi->jenis == 'krl' ? 'selected' : '' }}>KRL</option>
+            <option value="lrt" {{ $transportasi->jenis == 'lrt' ? 'selected' : '' }}>LRT</option>
+            <option value="bus" {{ $transportasi->jenis == 'bus' ? 'selected' : '' }}>Trans Bekasi</option>
+        </select>
 
+        <!-- Jam Operasional -->
+        <div class="flex gap-3 mb-3">
+            <input type="time" name="jam_mulai"
+                value="{{ old('jam_mulai', $transportasi->jam_mulai) }}"
+                class="w-full border p-2 rounded">
+
+            <input type="time" name="jam_selesai"
+                value="{{ old('jam_selesai', $transportasi->jam_selesai) }}"
+                class="w-full border p-2 rounded">
+        </div>
+
+        <!-- Gambar Lama -->
         @if($transportasi->gambar)
             <img src="{{ asset('storage/' . $transportasi->gambar) }}" width="120" class="mb-3">
         @endif
 
+        <!-- Upload Gambar Baru -->
         <input type="file" name="gambar"
             class="w-full border p-2 mb-3 rounded">
 

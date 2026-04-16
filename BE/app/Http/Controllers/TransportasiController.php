@@ -11,7 +11,7 @@ class TransportasiController extends Controller
     // ================= ADMIN =================
     public function index()
     {
-        $transportasi = Transportasi::all();
+        $transportasi = Transportasi::with('stasiun')->get();
         return view('admin.transportasi.index', compact('transportasi'));
     }
 
@@ -22,15 +22,22 @@ class TransportasiController extends Controller
 
     public function store(Request $request)
     {
-        $gambar = $request->file('gambar')->store('transportasi', 'public');
+        $gambar = null;
+
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar')->store('transportasi', 'public');
+        }
 
         Transportasi::create([
             'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
+            'jenis' => $request->jenis,
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
             'gambar' => $gambar,
         ]);
 
-        return redirect()->route('transportasi.index');
+        return redirect()->route('transportasi.index')
+            ->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -49,27 +56,62 @@ class TransportasiController extends Controller
         }
 
         $t->nama = $request->nama;
-        $t->deskripsi = $request->deskripsi;
+        $t->jenis = $request->jenis;
+        $t->jam_mulai = $request->jam_mulai;
+        $t->jam_selesai = $request->jam_selesai;
         $t->save();
 
-        return redirect()->route('transportasi.index');
+        return redirect()->route('transportasi.index')
+            ->with('success', 'Data berhasil diupdate');
     }
 
- public function destroy($id)
-{
-    $transportasi = Transportasi::findOrFail($id);
-    $transportasi->delete();
+    public function destroy($id)
+    {
+        $transportasi = Transportasi::findOrFail($id);
+        $transportasi->delete();
 
-    return redirect()->route('transportasi.index')
-        ->with('success', 'Data berhasil dihapus');
-}
+        return redirect()->route('transportasi.index')
+            ->with('success', 'Data berhasil dihapus');
+    }
 
-    // ================= USER (FRONTEND) =================
+    // ================= STASIUN =================
+    public function formStasiun($id)
+    {
+        $transportasi = Transportasi::with('stasiun')->findOrFail($id);
+        return view('admin.transportasi.stasiun', compact('transportasi'));
+    }
+
+    public function storeStasiun(Request $request, $id)
+    {
+        $transportasi = Transportasi::findOrFail($id);
+
+        $transportasi->stasiun()->create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'urutan' => $request->urutan,
+        ]);
+
+        return back()->with('success', 'Stasiun berhasil ditambahkan');
+    }
+
+    // ================= USER =================
     public function rute()
     {
-        $transportasi = Transportasi::all();
+        $transportasi = Transportasi::with('stasiun')->get();
         $koasi = Koasi::all();
 
         return view('rute', compact('transportasi', 'koasi'));
     }
+
+    public function storeRute(Request $request, $id)
+{
+    $transportasi = Transportasi::findOrFail($id);
+
+    $transportasi->rute()->create([
+        'asal' => $request->asal,
+        'tujuan' => $request->tujuan,
+    ]);
+
+    return back()->with('success', 'Rute berhasil ditambahkan');
+}
 }

@@ -18,7 +18,9 @@
     <thead>
         <tr class="bg-gray-100">
             <th class="p-3 text-left">Nama</th>
-            <th class="p-3 text-left">Deskripsi</th>
+            <th class="p-3 text-left">Jenis</th>
+            <th class="p-3 text-left">Jam Operasional</th>
+            <th class="p-3 text-left">Stasiun</th>
             <th class="p-3 text-left">Gambar</th>
             <th class="p-3 text-right">Aksi</th>
         </tr>
@@ -29,18 +31,50 @@
         @forelse($transportasi as $t)
         <tr class="border-t">
 
+            <!-- Nama -->
             <td class="p-3">
                 {{ $t->nama }}
             </td>
 
+            <!-- Jenis -->
             <td class="p-3">
-                {{ $t->deskripsi }}
+                {{ strtoupper($t->jenis) }}
             </td>
 
+            <!-- Jam -->
             <td class="p-3">
-                <img src="{{ asset('storage/' . $t->gambar) }}" width="80">
+                {{ $t->jam_mulai }} - {{ $t->jam_selesai }}
             </td>
 
+            <!-- Stasiun -->
+            <td class="p-3">
+
+                <!-- tombol tambah -->
+                <a href="{{ url('/transportasi/'.$t->id.'/stasiun') }}"
+                   class="text-green-600 text-sm">
+                   + Tambah Stasiun
+                </a>
+
+                <ul class="list-disc ml-4 mt-2">
+                    @forelse($t->stasiun as $s)
+                        <li>
+                            {{ $s->urutan }}. {{ $s->nama }}
+                        </li>
+                    @empty
+                        <li class="text-gray-400">Belum ada stasiun</li>
+                    @endforelse
+                </ul>
+
+            </td>
+
+            <!-- Gambar -->
+            <td class="p-3">
+                @if($t->gambar)
+                    <img src="{{ asset('storage/' . $t->gambar) }}" width="80">
+                @endif
+            </td>
+
+            <!-- Aksi -->
             <td class="p-3 text-right">
 
                 <a href="{{ route('transportasi.edit', $t->id) }}"
@@ -69,7 +103,7 @@
 
         @empty
         <tr>
-            <td colspan="4" class="text-center p-5">
+            <td colspan="6" class="text-center p-5">
                 Tidak ada data transportasi
             </td>
         </tr>
