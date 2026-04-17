@@ -311,116 +311,12 @@ display:none;
 
 <div class="accordion">
 
-<!-- KRL -->
+<!-- KRL (DINAMIS) -->
 
-<div class="accordion-item">
+<div class="accordion-item" id="krl-container"></div>
 
-<div class="accordion-header">
-<span>KRL Commuter</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-
-<div class="accordion-content">
-
-<div class="map">
-<img src="gambar/peta krl.png">
-</div>
-
-<div class="detail">
-
-<h3>Detail Rute</h3>
-
-<div class="route-item">
-<i class="fas fa-clock"></i>
-<strong>Jam Operasional:</strong> 04:30 – 23:30 WIB
-</div>
-
-<div class="route-item">
-<i class="fas fa-money-bill-wave"></i>
-<strong>Tarif KRL:</strong> Rp3.000 – Rp8.000
-</div>
-
-<h4 style="margin-top:15px;">Stasiun yang Dilalui</h4>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun Bekasi</strong>
-<p>Jalan Ir H Juanda, Kelurahan Marga Mulya, Kecamatan Bekasi Utara, Kota Bekasi, Jawa Barat.</p>
-</div>
-</div>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun Bekasi Timur </strong>
-<p>Jl. Insinyur H. Juanda No.25, Duren Jaya, Kec. Bekasi Tim., Kota Bks, Jawa Barat. </p>
-</div>
-</div>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun Kranji</strong>
-<p>Kranji, Bekasi Barat, Kota Bekasi, Jawa Barat.</p>
-</div>
-</div>
-
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- TRANS BEKEN -->
-
-<div class="accordion-item">
-
-<div class="accordion-header">
-<span>Trans Beken</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-
-<div class="accordion-content">
-
-<div class="map">
-<img src="gambar/kenkenbeken.jpeg">
-</div>
-
-<div class="detail">
-
-<h3>Koridor</h3>
-
-<div class="route-item">
-<i class="fas fa-clock"></i>
-<strong>Jam Operasional:</strong> 05:00 – 21:00 WIB
-</div>
-
-<div class="route-item">
-<i class="fas fa-money-bill-wave"></i>
-<strong>Tarif Trans Beken:</strong> Rp 4.500
-</div>
-
-
-<div class="route-item">
-<i class="fas fa-bus"></i>
-Terminal Bekasi → Harapan Indah
-</div>
-
-<div class="route-item">
-<i class="fas fa-bus"></i>
-Harapan Indah → Terminal Bekasi
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- TRANS BEKEN (DINAMIS) -->
+<div class="accordion-item" id="trans-container"></div>
 
 <!-- KOASI -->
 
@@ -455,72 +351,8 @@ Harapan Indah → Terminal Bekasi
 
 </div>
 
-
-<!-- LRT -->
-
-<div class="accordion-item">
-
-<div class="accordion-header">
-<span>LRT</span>
-<i class="fas fa-chevron-down"></i>
-</div>
-
-<div class="accordion-content">
-
-<div class="map">
-<img src="gambar/Peta LRTT.png">
-</div>
-
-<div class="detail">
-
-<h3>Detail Rute</h3>
-
-<div class="route-item">
-<i class="fas fa-clock"></i>
-<strong>Jam Operasional:</strong> 05:30 – 23:00 WIB
-</div>
-
-<h4 style="margin-top:15px;">Stasiun yang Dilalui</h4>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun LRT Jatibening Baru</strong>
-<p>PWVH+6V3, Bekasi, RT.009/RW.004, Jatibening Baru, Kec. Pd. Gede, Kota Bks, Jawa Barat 17412.</p>
-</div>
-</div>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun LRT Cikunir 1</strong>
-<p>Jl. Caman Raya, Jatibening, Kec. Pd. Gede, Kota Bks, Jawa Barat 17412. </p>
-</div>
-</div>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun LRT Cikunir 2</strong>
-<p>Jakasampurna, Kec. Bekasi Bar., Kota Bks, Jawa Barat. </p>
-</div>
-</div>
-
-<div class="route-item">
-<i class="fas fa-location-dot"></i>
-<div>
-<strong>Stasiun LRT Bekasi Barat</strong>
-<p>Pekayon Jaya, Kec. Bekasi Sel., Kota Bks, Jawa Barat.  </p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+<!-- LRT (DINAMIS) -->
+<div class="accordion-item" id="lrt-container"></div>
 
 </section>
 
@@ -565,35 +397,180 @@ Harapan Indah → Terminal Bekasi
 
 
 <script>
-const headers = document.querySelectorAll(".accordion-header");
+fetch("http://127.0.0.1:8000/api/transportasi")
+.then(res => res.json())
+.then(data => {
 
-headers.forEach(header => {
-    header.addEventListener("click", () => {
-        const content = header.nextElementSibling;
-        content.style.display = content.style.display === "block" ? "none" : "block";
-    });
-});
+    // ================= KRL =================
+    const krl = data.find(t => t.jenis === 'krl');
 
-// =====================
-// AMBIL DATA DARI API
-// =====================
-fetch("http://127.0.0.1:8000/api/koasi")
-    .then(res => res.json())
-    .then(data => {
-        let html = "";
+    if (krl) {
+        let stasiunHTML = "";
 
-        data.forEach(k => {
-            html += `
-                <tr>
-                    <td>${k.kode}</td>
-                    <td><i class="fas fa-van-shuttle"></i> ${k.rute}</td>
-                </tr>
-            `;
+        krl.stasiun.forEach(s => {
+            stasiunHTML += `
+            <div class="route-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <strong>${s.nama}</strong>
+                    <p>${s.alamat ?? ''}</p>
+                </div>
+            </div>`;
         });
 
-        document.getElementById("koasi-body").innerHTML = html;
-    })
-    .catch(err => console.log(err));
+        document.getElementById("krl-container").innerHTML = `
+        <div class="accordion-header">
+            <span>${krl.nama}</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="accordion-content">
+            <div class="map">
+                <img src="http://127.0.0.1:8000/storage/${krl.gambar}">
+            </div>
+
+            <div class="detail">
+                <h3>Detail Rute</h3>
+
+                <div class="route-item">
+                    <i class="fas fa-clock"></i>
+                    <strong>Jam Operasional:</strong>
+                    ${krl.jam_mulai} - ${krl.jam_selesai} WIB
+                </div>
+
+                <div class="route-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <strong>Tarif KRL:</strong> Rp3.000 – Rp8.000
+                </div>
+
+                <h4 style="margin-top:15px;">Stasiun yang Dilalui</h4>
+                ${stasiunHTML}
+            </div>
+        </div>`;
+    }
+
+    // ================= LRT =================
+    const lrt = data.find(t => t.jenis === 'lrt');
+
+    if (lrt) {
+        let stasiunHTML = "";
+
+        lrt.stasiun.forEach(s => {
+            stasiunHTML += `
+            <div class="route-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <strong>${s.nama}</strong>
+                    <p>${s.alamat ?? ''}</p>
+                </div>
+            </div>`;
+        });
+
+        document.getElementById("lrt-container").innerHTML = `
+        <div class="accordion-header">
+            <span>${lrt.nama}</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <div class="accordion-content">
+            <div class="map">
+                <img src="http://127.0.0.1:8000/storage/${lrt.gambar}">
+            </div>
+
+            <div class="detail">
+                <h3>Detail Rute</h3>
+
+                <div class="route-item">
+                    <i class="fas fa-clock"></i>
+                    <strong>Jam Operasional:</strong>
+                    ${lrt.jam_mulai} - ${lrt.jam_selesai} WIB
+                </div>
+
+                <h4 style="margin-top:15px;">Stasiun yang Dilalui</h4>
+                ${stasiunHTML}
+            </div>
+        </div>`;
+    }
+
+    // ================= TRANS =================
+    const trans = data.find(t => 
+    t.jenis.toLowerCase().includes('bus')
+);
+
+if (trans) {
+    let ruteHTML = "";
+
+    trans.rute.forEach(r => {
+        ruteHTML += `
+        <div class="route-item">
+            <i class="fas fa-bus"></i>
+            ${r.asal} → ${r.tujuan}
+        </div>`;
+    });
+
+    document.getElementById("trans-container").innerHTML = `
+<div class="accordion-header">
+    <span>${trans.nama}</span>
+    <i class="fas fa-chevron-down"></i>
+</div>
+
+<div class="accordion-content">
+
+    <div class="map">
+        <img src="http://127.0.0.1:8000/storage/${trans.gambar}">
+    </div>
+
+    <div class="detail">
+
+        <h3>Detail Rute</h3>
+
+        <div class="route-item">
+            <i class="fas fa-clock"></i>
+            <strong>Jam Operasional:</strong>
+            ${trans.jam_mulai} - ${trans.jam_selesai} WIB
+        </div>
+
+        <div class="route-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <strong>Tarif:</strong> Rp3.500
+        </div>
+
+        <h4 style="margin-top:15px;">Rute yang Dilalui</h4>
+
+        ${ruteHTML}
+
+    </div>
+
+</div>`;
+}
+
+    // ================= ACCORDION =================
+    document.querySelectorAll(".accordion-header").forEach(header => {
+        header.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            content.style.display =
+                content.style.display === "block" ? "none" : "block";
+        });
+    });
+
+});
+
+// ================= KOASI =================
+fetch("http://127.0.0.1:8000/api/koasi")
+.then(res => res.json())
+.then(data => {
+    let html = "";
+
+    data.forEach(k => {
+        html += `
+        <tr>
+            <td>${k.kode}</td>
+            <td><i class="fas fa-van-shuttle"></i> ${k.rute}</td>
+        </tr>`;
+    });
+
+    document.getElementById("koasi-body").innerHTML = html;
+});
 </script>
 
 </body>

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rute', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('transportasi_id')->constrained()->onDelete('cascade');
-    $table->string('asal');
-    $table->string('tujuan');
-    $table->timestamps();
-});
+        Schema::table('rute', function (Blueprint $table) {
+        $table->foreignId('transportasi_id')
+            ->constrained('transportasis')
+            ->cascadeOnDelete();
+    });
     }
 
     /**
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rute');
+        Schema::table('rute', function (Blueprint $table) {
+            //
+        });
     }
 };

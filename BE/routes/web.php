@@ -53,3 +53,4 @@ Route::post('transportasi/{id}/stasiun', [TransportasiController::class, 'storeS
     ->name('transportasi.stasiun.store');
 
 Route::post('/transportasi/{id}/rute', [TransportasiController::class, 'storeRute']);
+Route::get('/transportasi/{id}/rute', [TransportasiController::class, 'formRute']);

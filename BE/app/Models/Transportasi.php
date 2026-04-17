@@ -21,7 +21,7 @@ class Transportasi extends Model
         return $this->hasMany(Stasiun::class);
     }
 
-    public function rute()
+   public function rute()
 {
     return $this->hasMany(Rute::class);
 }
