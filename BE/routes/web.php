@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Controllers\KoasiController;
 use App\Http\Controllers\TransportasiController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 
 // Redirect root ke login
 Route::get('/', function () {
@@ -54,3 +56,16 @@ Route::post('transportasi/{id}/stasiun', [TransportasiController::class, 'storeS
 
 Route::post('/transportasi/{id}/rute', [TransportasiController::class, 'storeRute']);
 Route::get('/transportasi/{id}/rute', [TransportasiController::class, 'formRute']);
+
+// Halaman utama (homepage)
+Route::get('/', [SliderController::class, 'index']);
+
+// Simpan slider (upload gambar)
+Route::post('/slider', [SliderController::class, 'store'])->name('slider.store');
+
+Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
+    
+    // tambahkan ini
+    Route::resource('slider', AdminSliderController::class);
+
+});

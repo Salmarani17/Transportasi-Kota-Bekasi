@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('rute', function (Blueprint $table) {
-        $table->foreignId('transportasi_id')
-            ->constrained('transportasis')
-            ->cascadeOnDelete();
-    });
+        Schema::create('rute', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('transportasi_id')->constrained()->cascadeOnDelete();
+    $table->string('asal');
+    $table->string('tujuan');
+    $table->timestamps();
+});
     }
 
     /**

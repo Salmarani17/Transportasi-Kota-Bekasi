@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Laravel Admin Panel (Laravel 12)
 
 > A comprehensive admin panel built with **Laravel 12**, featuring user management, profile management, settings, and a modern dashboard with sidebar navigation.
@@ -307,3 +308,6 @@ Built with:
 ## Support
 
 For issues and questions, please open an issue on the repository.
+=======
+# Transportasi-Kota-Bekasi
+>>>>>>> 8b0fb56d1d2d184e0a9ee66bdc97138b77ce7406

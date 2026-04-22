@@ -51,6 +51,11 @@
         Data Koasi
     </a>
 
+    <a href="{{ route('slider.index') }}"
+    class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+    Slider
+</a>
+
                 <a href="{{ route('users.index') }}"
                     class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-colors duration-200 group {{ request()->routeIs('users.*') ? 'bg-indigo-50 text-indigo-700' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
                     <svg class="w-5 h-5 mr-3 {{ request()->routeIs('users.*') ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-500' }}"

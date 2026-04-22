@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transportasi Kota Bekasi</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+/* ================= NAVBAR ================= */
+nav{
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#0d47a1;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+position:relative;
+}
+
+.menu a::after{
+content:'';
+position:absolute;
+width:0%;
+height:2px;
+background:#0d47a1;
+left:0;
+bottom:-5px;
+transition:0.3s;
+}
+
+.menu a:hover::after{
+width:100%;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+cursor:pointer;
+}
+
+/* ================= SLIDER ================= */
+.slider{
+position:relative;
+width:100%;
+height:75vh;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+opacity:0;
+transition:opacity 1s;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.slide.active{
+opacity:1;
+}
+
+/* ===== PANAH MODERN TANPA KOTAK ===== */
+.prev, .next{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:transparent;
+color:white;
+border:none;
+font-size:40px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.prev:hover,
+.next:hover{
+transform:translateY(-50%) scale(1.2);
+opacity:0.8;
+}
+
+.prev{ left:25px; }
+.next{ right:25px; }
+
+/* ===== DOT SLIDER ===== */
+.dots{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+}
+
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:rgba(255,255,255,0.5);
+cursor:pointer;
+transition:0.3s;
+}
+
+.dot.active{
+background:white;
+transform:scale(1.2);
+}
+
+/* ================= LAYANAN ================= */
+.layanan{
+padding:60px 40px;
+background:white;
+}
+
+.layanan-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.layanan-header h2{
+color:#0d47a1;
+}
+
+.layanan-header a{
+text-decoration:none;
+color:#0d47a1;
+font-weight:600;
+}
+
+.layanan-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+}
+
+.layanan-item{
+position:relative;
+padding:10px;
+}
+
+.layanan-icon{
+position:absolute;
+right:0;
+top:0;
+font-size:40px;
+color:#0d47a1;
+opacity:0.8;
+}
+
+.layanan-item h3{
+color:#0d47a1;
+margin-bottom:10px;
+}
+
+.layanan-item p{
+color:#444;
+line-height:1.6;
+}
+
+.layanan-bottom{
+margin-top:20px;
+}
+
+.layanan-bottom hr{
+border:none;
+height:2px;
+background:#0d47a1;
+margin-bottom:15px;
+}
+
+.arrow-btn{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+width:40px;
+height:40px;
+border-radius:50%;
+background:#0d47a1;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.arrow-btn:hover{
+transform:translateX(5px);
+}
+
+/* ================= FOOTER ================= */
+footer{
+background:#0d47a1;
+color:white;
+padding:50px 20px 20px;
+margin-top:60px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+}
+
+.footer-section h3{
+margin-bottom:15px;
+font-size:18px;
+}
+
+.footer-section p,
+.footer-section a{
+color:#ccc;
+text-decoration:none;
+font-size:14px;
+display:block;
+margin-bottom:8px;
+}
+
+.footer-section a:hover{
+color:white;
+}
+.logo-container{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo-container img{
+width:40px;
+height:40px;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.footer-logo img{
+width:40px;
+}
+
+.logo-container{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo-container img{
+width:40px;
+height:40px;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.footer-logo img{
+width:40px;
+}
+.social-icons i{
+margin-right:10px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.social-icons i:hover{
+color:#0d6efd;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:30px;
+border-top:1px solid rgba(255,255,255,0.2);
+padding-top:15px;
+font-size:14px;
+color:#aaa;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+.menu{
+position:absolute;
+top:70px;
+right:0;
+background:white;
+flex-direction:column;
+width:220px;
+display:none;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.menu.show{
+display:flex;
+}
+
+nav{
+z-index:9999;
+position:sticky;
+top:0;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.slider{
+height:50vh;
+}
+}
+
+@media(max-width:480px){
+.slider{
+height:40vh;
+}
+}
+
+</style>
+</head>
+<body>
+<nav>
+    <div class="logo-container">
+<img src="gambar/Screenshot_2026-02-26_195854-removebg-preview.png" alt="Logo">
+<div class="logo">Transportasi Bekasi</div>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<div class="menu" id="menu">
+<a href="index.html">Beranda</a>
+<a href="rute.html">Rute Transportasi</a>
+<a href="tentang.html">Tentang</a>
+</div>
+
+</nav>
+
+<!-- ================= SLIDER ================= -->
+<section class="slider">
+
+<div class="slide active">
+<img src="gambar/Stasiun.jpeg">
+</div>
+
+<div class="slide">
+<img src="gambar/Krl.jpeg">
+</div>
+
+<div class="slide">
+<img src="gambar/lrt baru.jpeg">
+</div>
+
+<div class="slide">
+<img src="gambar/Angkot.jpeg">
+</div>
+
+<button class="prev" onclick="changeSlide(-1)">❮</button>
+<button class="next" onclick="changeSlide(1)">❯</button>
+
+<div class="dots">
+<span class="dot active" onclick="currentSlide(0)"></span>
+<span class="dot" onclick="currentSlide(1)"></span>
+<span class="dot" onclick="currentSlide(2)"></span>
+<span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+</section>
+
+<!-- LAYANAN -->
+<section class="layanan">
+
+<div class="layanan-header">
+<h2><i class="fas fa-users"></i> Layanan</h2>
+</div>
+
+<div class="layanan-grid">
+
+<div class="layanan-item">
+<div class="layanan-icon">
+<i class="fas fa-train"></i>
+</div>
+<h3>KRL Commuter</h3>
+<p>Layanan kereta rel listrik yang menghubungkan Bekasi dengan wilayah Jabodetabek.</p>
+<div class="layanan-bottom">
+<hr>
+<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<div class="layanan-item">
+<div class="layanan-icon">
+<i class="fas fa-subway"></i>
+</div>
+<h3>LRT</h3>
+<p>Transportasi modern berbasis rel yang menghubungkan Bekasi dengan pusat kota Jakarta.</p>
+<div class="layanan-bottom">
+<hr>
+<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<div class="layanan-item">
+<div class="layanan-icon">
+<i class="fas fa-van-shuttle"></i>
+</div>
+<h3>KOASI</h3>
+<p>KOASI adalah layanan angkutan kota yang menghubungkan berbagai wilayah di Kota Bekasi dan menjadi salah satu transportasi umum yang mudah dijangkau oleh masyarakat.</p>
+<div class="layanan-bottom">
+<hr>
+<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+<div class="layanan-item">
+<div class="layanan-icon">
+<i class="fas fa-bus"></i>
+</div>
+<h3>Trans Beken</h3>
+<p>Layanan bus Trans Beken merupakan transportasi umum Kota Bekasi yang melayani berbagai rute strategis untuk memudahkan mobilitas masyarakat secara aman, nyaman, dan terjangkau.</p>
+<div class="layanan-bottom">
+<hr>
+<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+<div class="footer-container">
+
+<div class="footer-section">
+
+<div class="footer-logo">
+<img src="gambar/Screenshot_2026-02-26_195854-removebg-preview.png" alt="Logo">
+<h3>Transportasi Kota Bekasi</h3>
+</div>
+
+<p>Website informasi transportasi umum Kota Bekasi untuk memudahkan mobilitas masyarakat.</p>
+
+</div>
+
+<div class="footer-section">
+<h3>Menu Cepat</h3>
+<a href="index.html">Beranda</a>
+<a href="rute.html">Rute Transportasi</a>
+<a href="tentang.html">Tentang</a>
+</div>
+
+<div class="footer-section">
+<h3>Kontak</h3>
+<p><i class="fas fa-map-marker-alt"></i> Kota Bekasi, Jawa Barat</p>
+<p><i class="fas fa-phone"></i> (021) 123456</p>
+<p><i class="fas fa-envelope"></i> transportasi@bekasikota.go.id</p>
+</div>
+
+<div class="footer-section">
+<h3>Sosial Media</h3>
+<div class="social-icons">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-youtube"></i>
+</div>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Transportasi Kota Bekasi. All Rights Reserved.
+</div>
+</footer>
+
+<script>
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide(index){
+slides.forEach(slide => slide.classList.remove("active"));
+dots.forEach(dot => dot.classList.remove("active"));
+
+slides[index].classList.add("active");
+dots[index].classList.add("active");
+}
+
+function changeSlide(n){
+slideIndex += n;
+
+if(slideIndex >= slides.length) slideIndex = 0;
+if(slideIndex < 0) slideIndex = slides.length - 1;
+
+showSlide(slideIndex);
+}
+
+function currentSlide(n){
+slideIndex = n;
+showSlide(slideIndex);
+}
+
+setInterval(()=>{
+changeSlide(1);
+},4000);
+</script>
+
+</body>
+</html>
