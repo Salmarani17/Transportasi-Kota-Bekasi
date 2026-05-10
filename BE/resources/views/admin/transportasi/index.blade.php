@@ -46,25 +46,16 @@
                 {{ $t->jam_mulai }} - {{ $t->jam_selesai }}
             </td>
 
-            <!-- DETAIL (STASIUN / RUTE) -->
-            <td class="p-3">
+     <!-- DETAIL (STASIUN / RUTE) -->
+<td class="p-3">
 
-   @if(strtolower(trim($t->jenis)) == 'bus')
+    @if(strtolower(trim($t->jenis)) == 'bus')
 
-        <!-- BUS = RUTE -->
-        <form action="{{ url('/transportasi/'.$t->id.'/rute') }}" method="POST" class="mt-2">
-    @csrf
-
-    <input type="text" name="asal" placeholder="Asal" required
-        class="border px-2 py-1 text-sm">
-
-    <input type="text" name="tujuan" placeholder="Tujuan" required
-        class="border px-2 py-1 text-sm">
-
-    <button type="submit" class="text-green-600 text-sm">
-        + Simpan Rute
-    </button>
-</form>
+        <!-- BUS -->
+        <a href="{{ url('/transportasi/'.$t->id.'/rute') }}"
+           class="text-green-600 text-sm">
+           + Tambah Rute
+        </a>
 
         <ul class="list-disc ml-4 mt-2">
             @forelse($t->rute as $r)
@@ -78,7 +69,7 @@
 
     @else
 
-        <!-- KRL & LRT = STASIUN -->
+        <!-- KRL & LRT -->
         <a href="{{ url('/transportasi/'.$t->id.'/stasiun') }}"
            class="text-green-600 text-sm">
            + Tambah Stasiun

@@ -62,3 +62,35 @@ Route::get('/transportasi/{id}/rute', [TransportasiController::class, 'formRute'
 Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
     Route::resource('slider', AdminSliderController::class);
 });
+
+Route::get('/stasiun/{id}/edit',
+    [TransportasiController::class, 'editStasiun'])
+    ->name('stasiun.edit');
+
+Route::put('/stasiun/{id}',
+    [TransportasiController::class, 'updateStasiun'])
+    ->name('stasiun.update');
+
+Route::delete('/stasiun/{id}',
+    [TransportasiController::class, 'destroyStasiun'])
+    ->name('stasiun.destroy');
+
+Route::get('/rute/{id}/edit', [TransportasiController::class, 'editRute'])->name('rute.edit');
+
+Route::put('/rute/{id}', [TransportasiController::class, 'updateRute'])->name('rute.update');
+
+Route::delete('/rute/{id}', [TransportasiController::class, 'destroyRute'])->name('rute.destroy');
+Route::get('/transportasi/{id}/rute', [TransportasiController::class, 'formRute'])
+    ->name('transportasi.rute');
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/rute', function () {
+    return view('rute');
+});
+
+Route::get('/tentang', function () {
+    return view('tentang');
+});

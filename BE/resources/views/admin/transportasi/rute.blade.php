@@ -3,7 +3,7 @@
 <div class="flex justify-between mb-6">
 
     <h2 class="text-2xl font-bold">
-        Stasiun - {{ $transportasi->nama }}
+        Rute - {{ $transportasi->nama }}
     </h2>
 
     <a href="{{ route('transportasi.index') }}"
@@ -13,23 +13,22 @@
 
 </div>
 
-<!-- FORM TAMBAH STASIUN -->
+<!-- FORM TAMBAH RUTE -->
 <div class="mb-6 p-4 border rounded">
 
-    <h3 class="font-semibold mb-3">Tambah Stasiun</h3>
+    <h3 class="font-semibold mb-3">Tambah Rute</h3>
 
-    <form action="{{ route('transportasi.stasiun.store', $transportasi->id) }}" method="POST">
+    <form action="{{ url('/transportasi/'.$transportasi->id.'/rute') }}" method="POST">
         @csrf
 
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 gap-3">
 
-            <input type="text" name="nama" placeholder="Nama Stasiun"
+            <input type="text" name="asal"
+                placeholder="Asal"
                 class="border p-2 rounded">
 
-            <input type="text" name="alamat" placeholder="Alamat"
-                class="border p-2 rounded">
-
-            <input type="number" name="urutan" placeholder="Urutan"
+            <input type="text" name="tujuan"
+                placeholder="Tujuan"
                 class="border p-2 rounded">
 
         </div>
@@ -43,52 +42,47 @@
 
 </div>
 
-<!-- TABLE STASIUN -->
+<!-- TABLE RUTE -->
 <table class="w-full border">
 
     <thead>
         <tr class="bg-gray-100">
-            <th class="p-3 text-left">Urutan</th>
-            <th class="p-3 text-left">Nama</th>
-            <th class="p-3 text-left">Alamat</th>
+            <th class="p-3 text-left">Asal</th>
+            <th class="p-3 text-left">Tujuan</th>
             <th class="p-3 text-left">Aksi</th>
         </tr>
     </thead>
 
     <tbody>
 
-        @forelse($transportasi->stasiun as $s)
+        @forelse($transportasi->rute as $r)
         <tr class="border-t">
 
             <td class="p-3">
-                {{ $s->urutan }}
+                {{ $r->asal }}
             </td>
 
             <td class="p-3">
-                {{ $s->nama }}
-            </td>
-
-            <td class="p-3">
-                {{ $s->alamat }}
+                {{ $r->tujuan }}
             </td>
 
             <td class="p-3 flex gap-2">
 
                 <!-- EDIT -->
-                <a href="{{ route('stasiun.edit', $s->id) }}"
+                <a href="{{ route('rute.edit', $r->id) }}"
                     class="bg-yellow-500 text-white px-3 py-1 rounded">
                     Edit
                 </a>
 
                 <!-- HAPUS -->
-                <form action="{{ route('stasiun.destroy', $s->id) }}"
+                <form action="{{ route('rute.destroy', $r->id) }}"
                     method="POST">
 
                     @csrf
                     @method('DELETE')
 
                     <button type="submit"
-                        onclick="return confirm('Yakin hapus stasiun?')"
+                        onclick="return confirm('Yakin hapus rute?')"
                         class="bg-red-600 text-white px-3 py-1 rounded">
 
                         Hapus
@@ -103,8 +97,8 @@
 
         @empty
         <tr>
-            <td colspan="4" class="text-center p-5 text-gray-400">
-                Belum ada stasiun
+            <td colspan="3" class="text-center p-5 text-gray-400">
+                Belum ada rute
             </td>
         </tr>
         @endforelse

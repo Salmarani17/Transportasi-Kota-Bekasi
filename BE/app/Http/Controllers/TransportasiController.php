@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Transportasi;
 use App\Models\Koasi;
+use App\Models\Stasiun;
+use App\Models\Rute;
 use Illuminate\Http\Request;
 
 class TransportasiController extends Controller
@@ -146,7 +148,81 @@ class TransportasiController extends Controller
 
     public function formRute($id)
 {
-    $transportasi = Transportasi::findOrFail($id);
+    $transportasi = Transportasi::with('rute')->findOrFail($id);
+
     return view('admin.transportasi.rute', compact('transportasi'));
 }
+
+public function editStasiun($id)
+{
+    $stasiun = Stasiun::findOrFail($id);
+
+    return view('admin.transportasi.edit-stasiun', compact('stasiun'));
+}
+
+public function updateStasiun(Request $request, $id)
+{
+    $request->validate([
+        'nama' => 'required',
+        'alamat' => 'nullable',
+        'urutan' => 'required',
+    ]);
+
+    $stasiun = Stasiun::findOrFail($id);
+
+    $stasiun->update([
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'urutan' => $request->urutan,
+    ]);
+
+    return redirect()->route('transportasi.index')
+        ->with('success', 'Stasiun berhasil diupdate');
+}
+
+public function destroyStasiun($id)
+{
+    $stasiun = Stasiun::findOrFail($id);
+    $stasiun->delete();
+
+    return back()->with('success', 'Stasiun berhasil dihapus');
+}
+
+public function editRute($id)
+{
+    $rute = Rute::findOrFail($id);
+
+    return view('admin.transportasi.edit-rute', compact('rute'));
+}
+
+public function updateRute(Request $request, $id)
+{
+    $request->validate([
+        'asal' => 'required',
+        'tujuan' => 'required',
+    ]);
+
+    $rute = Rute::findOrFail($id);
+
+    $rute->update([
+        'asal' => $request->asal,
+        'tujuan' => $request->tujuan,
+    ]);
+
+    return redirect()->route('transportasi.rute', $rute->transportasi_id)
+        ->with('success', 'Rute berhasil diupdate');
+}
+
+public function destroyRute($id)
+{
+    $rute = Rute::findOrFail($id);
+
+    $transportasi_id = $rute->transportasi_id;
+
+    $rute->delete();
+
+    return redirect()->route('transportasi.rute', $transportasi_id)
+        ->with('success', 'Rute berhasil dihapus');
+}
+
 }
