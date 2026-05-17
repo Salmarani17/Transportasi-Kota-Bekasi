@@ -15,6 +15,7 @@
             <option value="krl">KRL</option>
             <option value="lrt">LRT</option>
             <option value="bus">Trans Bekasi</option>
+             <option value="bus">transjakarta</option>
         </select>
 
         <!-- Jam Operasional -->

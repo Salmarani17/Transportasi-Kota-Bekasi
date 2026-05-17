@@ -382,6 +382,9 @@ transform:translateX(-3px);
 <!-- TRANS BEKEN (DINAMIS) -->
 <div class="accordion-item" id="trans-container"></div>
 
+<!-- TRANSJAKARTA -->
+<div class="accordion-item" id="transjakarta-container"></div>
+
 <!-- KOASI -->
 
 <div class="accordion-item">
@@ -619,6 +622,53 @@ if (trans) {
 </div>`;
 }
 
+// ================= TRANSJAKARTA =================
+const transjakarta = data.find(t =>
+    t.nama.toLowerCase().includes('transjakarta')
+);
+
+if (transjakarta) {
+
+    let ruteHTML = "";
+
+    transjakarta.rute.forEach(r => {
+        ruteHTML += `
+        <div class="route-item">
+            <i class="fas fa-bus"></i>
+            ${r.asal} → ${r.tujuan}
+        </div>`;
+    });
+
+    document.getElementById("transjakarta-container").innerHTML = `
+    <div class="accordion-header">
+        <span>${transjakarta.nama}</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+
+    <div class="accordion-content">
+
+        <div class="map">
+            <img src="http://127.0.0.1:8000/storage/${transjakarta.gambar}">
+        </div>
+
+        <div class="detail">
+
+            <h3>Detail Rute</h3>
+
+            <div class="route-item">
+                <i class="fas fa-clock"></i>
+                <strong>Jam Operasional:</strong>
+                ${transjakarta.jam_mulai} - ${transjakarta.jam_selesai} WIB
+            </div>
+
+            <h4 style="margin-top:15px;">Rute yang Dilalui</h4>
+
+            ${ruteHTML}
+
+        </div>
+
+    </div>`;
+}
     // ================= ACCORDION =================
     document.querySelectorAll(".accordion-header").forEach(header => {
         header.addEventListener("click", function () {
