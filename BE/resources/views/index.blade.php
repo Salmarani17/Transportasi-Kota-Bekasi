@@ -197,6 +197,27 @@ color:#0d47a1;
 opacity:0.8;
 }
 
+.info-wrapper{
+text-align:center;
+margin-top:40px;
+}
+
+.info-btn{
+display:inline-block;
+background:#0d47a1;
+color:white;
+padding:12px 30px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.info-btn:hover{
+background:#1565c0;
+transform:translateY(-2px);
+}
+
 .layanan-item h3{
 color:#0d47a1;
 margin-bottom:10px;
@@ -271,7 +292,8 @@ color:white;
 .logo-container{
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
+margin-left:-15px;
 }
 
 .logo-container img{
@@ -290,11 +312,12 @@ margin-bottom:10px;
 width:40px;
 }
 
-.logo-container{
-display:flex;
-align-items:center;
-gap:10px;
+.logo-img{
+width:40px;
+height:40px;
+object-fit:contain;
 }
+
 
 .logo-container img{
 width:40px;
@@ -383,9 +406,24 @@ height:40vh;
 </head>
 <body>
 <nav>
-    <div class="logo-container">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<div class="logo">Transportasi Kota Bekasi</div>
+ <div class="logo-container">
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}" 
+        alt="Logo Bekasi"
+        class="logo-img"
+    >
+
+   <img 
+    src="{{ asset('gambar/kantor-damkar.png') }}" 
+    alt="Logo Damkar"
+    class="logo-img"
+>
+
+    <div class="logo">
+        Transportasi Kota Bekasi
+    </div>
+
 </div>
 
 <div class="menu-toggle" onclick="toggleMenu()">
@@ -415,61 +453,96 @@ height:40vh;
 <!-- LAYANAN -->
 <section class="layanan">
 
-<div class="layanan-header">
-<h2><i class="fas fa-users"></i> Layanan</h2>
-</div>
+    <div class="layanan-header">
+        <h2><i class="fas fa-users"></i> Layanan</h2>
+    </div>
 
-<div class="layanan-grid">
+    <div class="layanan-grid">
 
-<div class="layanan-item">
-<div class="layanan-icon">
-<i class="fas fa-train"></i>
-</div>
-<h3>KRL Commuter</h3>
-<p>Layanan kereta rel listrik yang menghubungkan Bekasi dengan wilayah Jabodetabek.</p>
-<div class="layanan-bottom">
-<hr>
-<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
-</div>
-</div>
+        <!-- KRL -->
+        <div class="layanan-item">
+            <div class="layanan-icon">
+                <i class="fas fa-train"></i>
+            </div>
 
-<div class="layanan-item">
-<div class="layanan-icon">
-<i class="fas fa-subway"></i>
-</div>
-<h3>LRT</h3>
-<p>Transportasi modern berbasis rel yang menghubungkan Bekasi dengan pusat kota Jakarta.</p>
-<div class="layanan-bottom">
-<hr>
-<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
-</div>
-</div>
+            <h3>KRL Commuter</h3>
 
-<div class="layanan-item">
-<div class="layanan-icon">
-<i class="fas fa-van-shuttle"></i>
-</div>
-<h3>KOASI</h3>
-<p>KOASI adalah layanan angkutan kota yang menghubungkan berbagai wilayah di Kota Bekasi dan menjadi salah satu transportasi umum yang mudah dijangkau oleh masyarakat.</p>
-<div class="layanan-bottom">
-<hr>
-<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
-</div>
-</div>
+            <p>
+                Layanan kereta rel listrik yang menghubungkan Bekasi
+                dengan wilayah Jabodetabek.
+            </p>
 
-<div class="layanan-item">
-<div class="layanan-icon">
-<i class="fas fa-bus"></i>
-</div>
-<h3>Trans Beken</h3>
-<p>Layanan bus Trans Beken merupakan transportasi umum Kota Bekasi yang melayani berbagai rute strategis untuk memudahkan mobilitas masyarakat secara aman, nyaman, dan terjangkau.</p>
-<div class="layanan-bottom">
-<hr>
-<a href="rute.html" class="arrow-btn"><i class="fas fa-arrow-right"></i></a>
-</div>
-</div>
+            <div class="layanan-bottom">
+                <hr>
+            </div>
+        </div>
 
-</div>
+        <!-- LRT -->
+        <div class="layanan-item">
+            <div class="layanan-icon">
+                <i class="fas fa-subway"></i>
+            </div>
+
+            <h3>LRT</h3>
+
+            <p>
+                Transportasi modern berbasis rel yang menghubungkan
+                Bekasi dengan pusat kota Jakarta.
+            </p>
+
+            <div class="layanan-bottom">
+                <hr>
+            </div>
+        </div>
+
+        <!-- KOASI -->
+        <div class="layanan-item">
+            <div class="layanan-icon">
+                <i class="fas fa-van-shuttle"></i>
+            </div>
+
+            <h3>KOASI</h3>
+
+            <p>
+                KOASI adalah layanan angkutan kota yang menghubungkan
+                berbagai wilayah di Kota Bekasi dan menjadi salah satu
+                transportasi umum yang mudah dijangkau oleh masyarakat.
+            </p>
+
+            <div class="layanan-bottom">
+                <hr>
+            </div>
+        </div>
+
+        <!-- TRANS BEKEN -->
+        <div class="layanan-item">
+            <div class="layanan-icon">
+                <i class="fas fa-bus"></i>
+            </div>
+
+            <h3>Trans Beken</h3>
+
+            <p>
+                Layanan bus Trans Beken merupakan transportasi umum
+                Kota Bekasi yang melayani berbagai rute strategis
+                untuk memudahkan mobilitas masyarakat secara aman,
+                nyaman, dan terjangkau.
+            </p>
+
+            <div class="layanan-bottom">
+                <hr>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BUTTON INFO -->
+    <div class="info-wrapper">
+        <a href="{{ url('/rute') }}" class="info-btn">
+            Info Selengkapnya
+        </a>
+    </div>
+
 </section>
 
 <footer>
@@ -478,8 +551,19 @@ height:40vh;
 <div class="footer-section">
 
 <div class="footer-logo">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<h3>Transportasi Kota Bekasi</h3>
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}"
+        class="footer-logo-img"
+    >
+
+    <img 
+        src="{{ asset('gambar/kantor-damkar.png') }}"
+        class="footer-logo-img"
+    >
+
+    <h3>Transportasi Kota Bekasi</h3>
+
 </div>
 
 <p>Website informasi transportasi umum Kota Bekasi untuk memudahkan mobilitas masyarakat.</p>

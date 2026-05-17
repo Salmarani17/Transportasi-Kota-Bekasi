@@ -37,7 +37,8 @@ z-index:1000;
 .logo-container{
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
+margin-left:-15px;
 }
 
 .logo-container img{
@@ -88,19 +89,66 @@ cursor:pointer;
 
 .hero{
 height:45vh;
-background:linear-gradient(rgba(13,71,161,0.6),rgba(13,71,161,0.6)),
+background:
+linear-gradient(rgba(13,71,161,0.65),rgba(13,71,161,0.65)),
 url("gambar/Stasiun.jpeg");
 background-size:cover;
 background-position:center;
 display:flex;
-justify-content:center;
 align-items:center;
+padding:40px;
 color:white;
-text-align:center;
+}
+
+.hero-content{
+max-width:1100px;
+width:100%;
+margin:auto;
+margin-top:-20px;
+}
+
+.back-btn{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-bottom:25px;
+margin-left:-10px;
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:white;
+color:#0d47a1;
+transform:translateX(-3px);
 }
 
 .hero h1{
-font-size:40px;
+font-size:42px;
+font-weight:700;
+line-height:1.2;
+max-width:700px;
+}
+
+@media(max-width:768px){
+
+.hero{
+height:38vh;
+padding:25px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+.back-btn{
+padding:8px 14px;
+font-size:14px;
+margin-bottom:18px;
+}
+
 }
 
 /* ================= TENTANG ================= */
@@ -312,9 +360,24 @@ font-size:30px;
 
 <nav>
 
-<div class="logo-container">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<div class="logo">Transportasi Bekasi</div>
+ <div class="logo-container">
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}" 
+        alt="Logo Bekasi"
+        class="logo-img"
+    >
+
+   <img 
+    src="{{ asset('gambar/kantor-damkar.png') }}" 
+    alt="Logo Damkar"
+    class="logo-img"
+>
+
+    <div class="logo">
+        Transportasi Kota Bekasi
+    </div>
+
 </div>
 
 <div class="menu-toggle" onclick="toggleMenu()">
@@ -329,10 +392,18 @@ font-size:30px;
 
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
-<h1>Tentang Transportasi Kota Bekasi</h1>
+
+    <div class="hero-content">
+
+        <a href="{{ url('/') }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+
+        <h1>Tentang Transportasi Kota Bekasi</h1>
+
+    </div>
+
 </section>
 
 <!-- ISI -->
@@ -437,8 +508,19 @@ efisien, dan ramah lingkungan.
 <div class="footer-section">
 
 <div class="footer-logo">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<h3>Transportasi Kota Bekasi</h3>
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}"
+        class="footer-logo-img"
+    >
+
+    <img 
+        src="{{ asset('gambar/kantor-damkar.png') }}"
+        class="footer-logo-img"
+    >
+
+    <h3>Transportasi Kota Bekasi</h3>
+
 </div>
 
 <p>Website informasi transportasi umum Kota Bekasi untuk memudahkan mobilitas masyarakat.</p>

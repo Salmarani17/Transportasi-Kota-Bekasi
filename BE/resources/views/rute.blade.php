@@ -224,7 +224,8 @@ font-size:18px;
 .logo-container{
 display:flex;
 align-items:center;
-gap:10px;
+gap:8px;
+margin-left:-15px;
 }
 
 .logo-container img{
@@ -327,9 +328,24 @@ transform:translateX(-3px);
 
 <nav>
 
-<div class="logo-container">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<div class="logo">Transportasi Bekasi</div>
+ <div class="logo-container">
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}" 
+        alt="Logo Bekasi"
+        class="logo-img"
+    >
+
+   <img 
+    src="{{ asset('gambar/kantor-damkar.png') }}" 
+    alt="Logo Damkar"
+    class="logo-img"
+>
+
+    <div class="logo">
+        Transportasi Kota Bekasi
+    </div>
+
 </div>
 
 <!-- HAMBURGER -->
@@ -413,8 +429,19 @@ transform:translateX(-3px);
 <div class="footer-section">
 
 <div class="footer-logo">
-<img src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}">
-<h3>Transportasi Kota Bekasi</h3>
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}"
+        class="footer-logo-img"
+    >
+
+    <img 
+        src="{{ asset('gambar/kantor-damkar.png') }}"
+        class="footer-logo-img"
+    >
+
+    <h3>Transportasi Kota Bekasi</h3>
+
 </div>
 
 <p>Website informasi transportasi umum Kota Bekasi untuk memudahkan mobilitas masyarakat.</p>
