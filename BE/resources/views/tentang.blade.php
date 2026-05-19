@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang - Transportasi Kota Bekasi</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo-container{
+display:flex;
+align-items:center;
+gap:8px;
+margin-left:-15px;
+}
+
+.logo-container img{
+width:40px;
+height:40px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#0d47a1;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+position:relative;
+}
+
+.menu a::after{
+content:'';
+position:absolute;
+width:0%;
+height:2px;
+background:#0d47a1;
+left:0;
+bottom:-5px;
+transition:0.3s;
+}
+
+.menu a:hover::after{
+width:100%;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+height:45vh;
+background:
+linear-gradient(rgba(13,71,161,0.65),rgba(13,71,161,0.65)),
+url("gambar/Stasiun.jpeg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:40px;
+color:white;
+}
+
+.hero-content{
+max-width:1100px;
+width:100%;
+margin:auto;
+margin-top:-20px;
+}
+
+.back-btn{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-bottom:25px;
+margin-left:-10px;
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:white;
+color:#0d47a1;
+transform:translateX(-3px);
+}
+
+.hero h1{
+font-size:42px;
+font-weight:700;
+line-height:1.2;
+max-width:700px;
+}
+
+@media(max-width:768px){
+
+.hero{
+height:38vh;
+padding:25px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+.back-btn{
+padding:8px 14px;
+font-size:14px;
+margin-bottom:18px;
+}
+
+}
+
+/* ================= TENTANG ================= */
+
+.tentang{
+padding:70px 40px;
+max-width:1100px;
+margin:auto;
+}
+
+.tentang h2{
+color:#0d47a1;
+margin-bottom:20px;
+}
+
+.tentang p{
+line-height:1.7;
+color:#444;
+margin-bottom:20px;
+}
+
+.tentang-grid{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.tentang-card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.tentang-card:hover{
+transform:translateY(-5px);
+}
+
+.tentang-card i{
+font-size:30px;
+color:#0d47a1;
+margin-bottom:15px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#0d47a1;
+color:white;
+padding:50px 20px 20px;
+margin-top:60px;
+}
+
+.footer-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.footer-logo img{
+width:40px;
+}
+
+.footer-section h3{
+margin-bottom:15px;
+}
+
+.footer-section p,
+.footer-section a{
+color:#ccc;
+text-decoration:none;
+font-size:14px;
+display:block;
+margin-bottom:8px;
+}
+
+.footer-section a:hover{
+color:white;
+}
+
+.social-icons i{
+margin-right:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:30px;
+border-top:1px solid rgba(255,255,255,0.2);
+padding-top:15px;
+font-size:14px;
+color:#aaa;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.menu{
+position:absolute;
+top:70px;
+right:0;
+background:white;
+flex-direction:column;
+width:220px;
+display:none;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.menu.show{
+display:flex;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+}
+
+.tentang-box{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+margin-top:40px;
+}
+
+.tentang-item{
+display:flex;
+gap:20px;
+align-items:flex-start;
+padding:20px 0;
+}
+
+.tentang-item i{
+font-size:35px;
+color:#0d47a1;
+margin-top:5px;
+min-width:40px;
+}
+
+.tentang-item h3{
+font-size:22px;
+color:#0d47a1;
+margin-bottom:10px;
+}
+
+.tentang-item p{
+color:#555;
+line-height:1.7;
+margin-bottom:10px;
+}
+
+.tentang-item a{
+text-decoration:none;
+color:#1565c0;
+font-weight:600;
+}
+
+.tentang-item a:hover{
+text-decoration:underline;
+}
+
+.tentang-line{
+height:1px;
+background:#e5e7eb;
+}
+
+@media(max-width:768px){
+
+.tentang-box{
+padding:25px;
+}
+
+.tentang-item{
+flex-direction:column;
+gap:10px;
+}
+
+.tentang-item i{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+ <div class="logo-container">
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}" 
+        alt="Logo Bekasi"
+        class="logo-img"
+    >
+
+   <img 
+    src="{{ asset('gambar/kantor-damkar.png') }}" 
+    alt="Logo Damkar"
+    class="logo-img"
+>
+
+    <div class="logo">
+        Transportasi Kota Bekasi
+    </div>
+
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<div class="menu" id="menu">
+<a href="{{ url('/') }}">Beranda</a>
+<a href="{{ url('/rute') }}">Rute Transportasi</a>
+<a href="{{ url('/tentang') }}">Tentang</a>
+</div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <a href="{{ url('/') }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+
+        <h1>Tentang Transportasi Kota Bekasi</h1>
+
+    </div>
+
+</section>
+
+<!-- ISI -->
+
+<section class="tentang">
+
+<h2>Informasi Website</h2>
+
+<p>
+Website ini dibuat untuk memberikan informasi mengenai berbagai jenis transportasi umum
+yang tersedia di Kota Bekasi seperti KRL Commuter Line, LRT, Koasi (angkutan kota),
+dan Trans Patriot. Tujuan dari website ini adalah membantu masyarakat dalam mengetahui
+rute dan layanan transportasi yang tersedia sehingga mobilitas menjadi lebih mudah.
+</p>
+
+<p>
+Dengan adanya informasi transportasi yang jelas dan mudah diakses,
+diharapkan masyarakat dapat menggunakan transportasi umum secara lebih efektif,
+efisien, dan ramah lingkungan.
+</p>
+
+<div class="tentang-box">
+
+<div class="tentang-item">
+    <i class="fas fa-train"></i>
+
+    <div>
+        <h3>KRL Commuter</h3>
+
+        <p>
+            Kereta rel listrik yang menghubungkan Kota Bekasi dengan wilayah
+            Jabodetabek dan menjadi salah satu transportasi favorit masyarakat.
+        </p>
+
+        <a href="https://commuterline.id/" target="_blank">
+            Website Resmi KRL →
+        </a>
+    </div>
+</div>
+
+<div class="tentang-line"></div>
+
+<div class="tentang-item">
+    <i class="fas fa-subway"></i>
+
+    <div>
+        <h3>LRT Jabodebek</h3>
+
+        <p>
+            Transportasi modern berbasis rel yang menghubungkan Bekasi,
+            Jakarta, dan sekitarnya dengan perjalanan yang cepat dan nyaman.
+        </p>
+
+        <a href="https://www.lrtjabodebek.id/" target="_blank">
+            Website Resmi LRT →
+        </a>
+    </div>
+</div>
+
+<div class="tentang-line"></div>
+
+<div class="tentang-item">
+    <i class="fas fa-van-shuttle"></i>
+
+    <div>
+        <h3>KOASI</h3>
+
+        <p>
+            Angkutan kota yang membantu mobilitas masyarakat dalam wilayah
+            Kota Bekasi dengan berbagai rute tujuan.
+        </p>
+    </div>
+</div>
+
+<div class="tentang-line"></div>
+
+<div class="tentang-item">
+    <i class="fas fa-bus"></i>
+
+    <div>
+        <h3>Trans Patriot</h3>
+
+        <p>
+            Layanan bus transportasi publik Kota Bekasi yang melayani jalur
+            utama dan mendukung perjalanan masyarakat secara aman dan nyaman.
+        </p>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-section">
+
+<div class="footer-logo">
+
+    <img 
+        src="{{ asset('gambar/Screenshot_2026-02-26_195854-removebg-preview.png') }}"
+        class="footer-logo-img"
+    >
+
+    <img 
+        src="{{ asset('gambar/kantor-damkar.png') }}"
+        class="footer-logo-img"
+    >
+
+    <h3>Transportasi Kota Bekasi</h3>
+
+</div>
+
+<p>Website informasi transportasi umum Kota Bekasi untuk memudahkan mobilitas masyarakat.</p>
+
+</div>
+
+<div class="footer-section">
+<h3>Menu Cepat</h3>
+<a href="{{ url('/') }}">Beranda</a>
+<a href="{{ url('/rute') }}">Rute Transportasi</a>
+<a href="{{ url('/tentang') }}">Tentang</a>
+</div>
+
+<div class="footer-section">
+<h3>Kontak</h3>
+<p><i class="fas fa-map-marker-alt"></i> Kota Bekasi, Jawa Barat</p>
+<p><i class="fas fa-phone"></i> (021) 123456</p>
+<p><i class="fas fa-envelope"></i> transportasi@bekasikota.go.id</p>
+</div>
+
+<div class="footer-section">
+<h3>Sosial Media</h3>
+<div class="social-icons">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-twitter"></i>
+<i class="fab fa-youtube"></i>
+</div>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Transportasi Kota Bekasi. All Rights Reserved.
+</div>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+
+</script>
+
+</body>
+</html>
